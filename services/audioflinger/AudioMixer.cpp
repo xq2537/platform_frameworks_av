@@ -94,7 +94,7 @@ bool AudioMixer::isMultichannelCapable = false;
 effect_descriptor_t AudioMixer::dwnmFxDesc;
 
 AudioMixer::AudioMixer(size_t frameCount, uint32_t sampleRate, uint32_t maxNumTracks)
-    :   mTrackNames(0), mConfiguredNames((1 << maxNumTracks) - 1), mSampleRate(sampleRate)
+    :   mTrackNames(0), mConfiguredNames((maxNumTracks >= 32 ? 0 : 1 << maxNumTracks) - 1), mSampleRate(sampleRate)
 {
     // AudioMixer is not yet capable of multi-channel beyond stereo
     COMPILE_TIME_ASSERT_FUNCTION_SCOPE(2 == MAX_NUM_CHANNELS);

@@ -11,4 +11,8 @@ LOCAL_C_INCLUDES := \
 
 LOCAL_MODULE:= libstagefright_color_conversion
 
+ifeq ($(strip $(ANDROVM_YV12_NOT_SUPPORTED)),true)
+    LOCAL_CPPFLAGS += -DANDROVM_YV12_NOT_SUPPORTED=1
+endif
+
 include $(BUILD_STATIC_LIBRARY)

@@ -36,7 +36,11 @@ int main(int argc, char** argv)
     sp<ProcessState> proc(ProcessState::self());
     sp<IServiceManager> sm = defaultServiceManager();
     ALOGI("ServiceManager: %p", sm.get());
-    AudioFlinger::instantiate();
+    //AudioFlinger::instantiate();
+    if (AudioFlinger::publish() < 0) {
+        ALOGI("Unable to start AudioFlinger, quitting...");
+        exit(-1);
+    }
     MediaPlayerService::instantiate();
     CameraService::instantiate();
     AudioPolicyService::instantiate();

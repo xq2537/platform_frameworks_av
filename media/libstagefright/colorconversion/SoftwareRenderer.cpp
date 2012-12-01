@@ -65,6 +65,7 @@ SoftwareRenderer::SoftwareRenderer(
     size_t bufWidth, bufHeight;
 
     switch (mColorFormat) {
+#ifndef ANDROVM_YV12_NOT_SUPPORTED
         case OMX_COLOR_FormatYUV420Planar:
         case OMX_TI_COLOR_FormatYUV420PackedSemiPlanar:
         {
@@ -77,6 +78,7 @@ SoftwareRenderer::SoftwareRenderer(
 
             // fall through.
         }
+#endif
 
         default:
             halFormat = HAL_PIXEL_FORMAT_RGB_565;
